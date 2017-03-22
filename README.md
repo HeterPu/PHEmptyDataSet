@@ -28,4 +28,4 @@ This library requires `iOS 6.0+` and `Xcode 6.0+`.
 
 License
 ==============
-PHStockChart is provided under the MIT license. See LICENSE file for details.
+PHEmptyDataSet is provided under the MIT license. See LICENSE file for details.
