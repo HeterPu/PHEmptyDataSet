@@ -32,6 +32,7 @@
 
 @interface ViewController ()<PHEmptyDataSetDelegate>
 
+@property(nonatomic,assign) BOOL isNoData;
 @end
 
 @implementation ViewController
@@ -40,21 +41,43 @@
     [super viewDidLoad];
     self.view.phDataSetDelegate = self;
     
-    [self.view noData];
+    [self.view noNetWork];
+    // [self.view noData]
     
     
-    // Do any additional setup after loading the view, typically from a nib.
 }
+
+
 
 
 
 #pragma mark -- PHempty delegate
 
+-(UIColor *)backgroundColorForEmptyDataSet:(UIView *)view emptyDataType:(PHEmptyNoDataType)type {
+    if (type == PHEmptyNoDataNoNetwork) {
+        return [UIColor redColor];
+    }
+    return [UIColor cyanColor];
+}
+
+
 -(BOOL)didTapEmptyDataView:(UIView *)view emptyDataType:(PHEmptyNoDataType)type {
-    
+    _isNoData = !_isNoData;
+    [self toggleView];
     return true;
 }
 
+
+
+-(void)toggleView{
+    if (_isNoData) {
+        [self.view noData];
+    }
+    else
+    {
+       [self.view noNetWork];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -2,8 +2,8 @@
 A lightWeight (No data ,no network) display tool.
 
 
-* [ImageTitleButton](https://github.com/HeterPu/PHStockChart) — A button with title and image (Can set different direction)
-* [PHEmptyDataSet](https://github.com/HeterPu/PHStockChart) — Main Empty DataSet
+* [ImageTitleButton](https://github.com/HeterPu/PHEmptyDataSet/tree/master/PHEmptyDataSet/ImageTitleButton) — A button with title and image (Can set different direction)
+* [PHEmptyDataSet](https://github.com/HeterPu/PHEmptyDataSet/tree/master/PHEmptyDataSet/PHEmptyDataSet) — Main Empty DataSet
 
 
 Demo Project
