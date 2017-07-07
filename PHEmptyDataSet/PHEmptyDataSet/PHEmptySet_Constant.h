@@ -21,6 +21,7 @@
 #define K_PHempty_image  [UIImage imageNamed:@"network_bad"]
 #define K_PHempty_image_size CGSizeMake(80, 80)
 #define K_PHempty_title   @"没有网络"
+#define K_PHempty_title_color_highlighted  [UIColor colorWithRed:100/255.0 green:100/255.0 blue:100/255.0 alpha:1.0]
 #define K_PHempty_padding   1.0
 #define K_PHempty_backGroundColor   [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0]
 
@@ -37,6 +38,7 @@
 #define K_PHempty_image_size_noData CGSizeMake(80, 80)
 #define K_PHempty_title_noData   @"没有数据"
 #define K_PHempty_padding_noData   1.0
+#define K_PHempty_title_color_noData_highlighted  [UIColor colorWithRed:100/255.0 green:100/255.0 blue:100/255.0 alpha:1.0]
 #define K_PHempty_backGroundColor_noData   [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0]
 
 

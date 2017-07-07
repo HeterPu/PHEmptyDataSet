@@ -111,9 +111,34 @@ typedef NS_ENUM(NSInteger, PHEmptyNoDataType){
 -(void)noNetWork;
 
 
+
 /**
  有数据时调用
  */
 -(void)hasData;
+
+/**
+ 无数据时是否开启动画
+
+ @param isAnimated 是否
+ */
+-(void)noDataWithAnimated:(BOOL)isAnimated;
+
+
+/**
+ 无网络时否开启动画
+ 
+ @param isAnimated 是否
+ */
+-(void)noNetWorkWithAnimated:(BOOL)isAnimated;
+
+
+/**
+ 有数据时是否开启动画
+ 
+ @param isAnimated 是否
+ */
+-(void)hasDataWithAnimated:(BOOL)isAnimated;
+
 
 @end

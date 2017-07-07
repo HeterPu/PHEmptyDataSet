@@ -44,6 +44,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         btn.bounds = CGRectMake(0,0,K_PHempty_size.width,K_PHempty_size.height);
         btn.imageSize = K_PHempty_image_size;
         [btn setTitleColor:K_PHempty_title_color forState:UIControlStateNormal];
+        [btn setTitleColor:K_PHempty_title_color_highlighted forState:UIControlStateHighlighted];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.padding = CGSizeMake(10, K_PHempty_padding);
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -60,6 +61,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         btn.bounds = CGRectMake(0,0,K_PHempty_size_noData.width,K_PHempty_size_noData.height);
         btn.imageSize = K_PHempty_image_size_noData;
         [btn setTitleColor:K_PHempty_title_color_noData forState:UIControlStateNormal];
+        [btn setTitleColor:K_PHempty_title_color_noData_highlighted forState:UIControlStateHighlighted];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.padding = CGSizeMake(10, K_PHempty_padding_noData);
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -100,26 +102,51 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
 
 -(void)noData{
     [self hasData];
-    [self setEmptyDataWithType:PHEmptyNoData];
+    [self setEmptyDataWithType:PHEmptyNoData andAnimationType:true];
 }
 
 -(void)noNetWork {
     [self hasData];
-    [self setEmptyDataWithType:PHEmptyNoDataNoNetwork];
+    [self setEmptyDataWithType:PHEmptyNoDataNoNetwork andAnimationType:true];
 }
 
+
+
+
+-(void)noDataWithAnimated:(BOOL)isAnimated{
+    [self hasDataWithAnimated:false];
+    [self setEmptyDataWithType:PHEmptyNoData andAnimationType:isAnimated];
+}
+
+-(void)noNetWorkWithAnimated:(BOOL)isAnimated {
+    [self hasDataWithAnimated:false];
+    [self setEmptyDataWithType:PHEmptyNoDataNoNetwork andAnimationType:isAnimated];
+}
+
+
+
 -(void)hasData {
+    [self hasDataWithAnimated:true];
+}
+
+-(void)hasDataWithAnimated:(BOOL)isAnimated{
     UIView *view = [self viewWithTag:9527];
     if (!view) {view = [self viewWithTag:9528];}
+    if (!isAnimated) {
+        view.alpha = 0;
+        [view removeFromSuperview];
+    }
+    {
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 0;
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
+    }
 }
 
 
--(void)setEmptyDataWithType:(PHEmptyNoDataType)type {
+-(void)setEmptyDataWithType:(PHEmptyNoDataType)type andAnimationType:(BOOL)animated {
     @WeakObj(self);
     CGRect rect = self.bounds;
     UIView * contentV = [UIView new];
@@ -182,11 +209,18 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         }
     }];
     
-    contentV.alpha = 0.1;
-    [UIView animateWithDuration:0.5 animations:^{
+    
+    if (animated) {
+        contentV.alpha = 0.1;
+        [UIView animateWithDuration:0.5 animations:^{
+            contentV.alpha = 1;
+        }];
+    }
+    else
+    {
         contentV.alpha = 1;
-    }];
 
+    }
 }
 
 @end
