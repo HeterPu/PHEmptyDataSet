@@ -4,7 +4,7 @@
 //
 //  Created by Alexi on 3/21/14.
 //  Copyright (c) 2014 Alexi. All rights reserved.
-//
+// Thanks to Alex
 
 #import <UIKit/UIKit.h>
 

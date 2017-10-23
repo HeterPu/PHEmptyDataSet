@@ -4,6 +4,7 @@
 //
 //  Created by Peter Hu on 2017/3/21.
 //  Copyright © 2017年 Peter Hu. All rights reserved.
+//  Like it,Star it on : https://github.com/HeterPu/PHEmptyDataSet
 //
 
 #ifndef PHEmptySet_Constant_h
