@@ -30,17 +30,17 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
 
 
 
--(ImageTitleButton *)viewForEmptyDataSet:(UIView *)view
+-(PH_ImageTitleButton *)viewForEmptyDataSet:(UIView *)view
                            emptyDataType:(PHEmptyNoDataType) type{
     
     
-    MenuItem *item = [[MenuItem alloc] init];
-    ImageTitleButton *titleBTN;
+    PH_MenuItem *item = [[PH_MenuItem alloc] init];
+    PH_ImageTitleButton *titleBTN;
     if (type == PHEmptyNoDataNoNetwork) {
         item.title = K_PHempty_title;
         item.icon = K_PHempty_image;
         
-        ImageTitleButton *btn = [[ImageTitleButton alloc]initWithMenu:item];
+        PH_ImageTitleButton *btn = [[PH_ImageTitleButton alloc]initWithMenu:item];
         btn.bounds = CGRectMake(0,0,K_PHempty_size.width,K_PHempty_size.height);
         btn.imageSize = K_PHempty_image_size;
         [btn setTitleColor:K_PHempty_title_color forState:UIControlStateNormal];
@@ -48,7 +48,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.padding = CGSizeMake(10, K_PHempty_padding);
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        btn.style = EImageTopTitleBottom;
+        btn.style = PH_EImageTopTitleBottom;
         btn.adjustsImageWhenHighlighted = true;
         titleBTN = btn;
     }
@@ -57,7 +57,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         item.title = K_PHempty_title_noData;
         item.icon = K_PHempty_image_noData;
         
-        ImageTitleButton *btn = [[ImageTitleButton alloc]initWithMenu:item];
+        PH_ImageTitleButton *btn = [[PH_ImageTitleButton alloc]initWithMenu:item];
         btn.bounds = CGRectMake(0,0,K_PHempty_size_noData.width,K_PHempty_size_noData.height);
         btn.imageSize = K_PHempty_image_size_noData;
         [btn setTitleColor:K_PHempty_title_color_noData forState:UIControlStateNormal];
@@ -65,7 +65,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.padding = CGSizeMake(10, K_PHempty_padding_noData);
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
-        btn.style = EImageTopTitleBottom;
+        btn.style = PH_EImageTopTitleBottom;
         btn.adjustsImageWhenHighlighted = true;
         titleBTN = btn;
     }
@@ -98,6 +98,11 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
     return K_PHempty_offset_h_noData;
 }
 
+
+-(UIEdgeInsets)viewForEdgeInSet:(UIView *)view
+                  emptyDataType:(PHEmptyNoDataType) type{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
 
 
 -(void)noData{
@@ -150,7 +155,6 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
     @WeakObj(self);
     CGRect rect = self.bounds;
     UIView * contentV = [UIView new];
-    contentV.frame = CGRectMake(0, 0, rect.size.width,  rect.size.height);
     contentV.tag = (type == PHEmptyNoDataNoNetwork)? 9527:9528;
     
     UIColor *color;
@@ -165,7 +169,19 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
     contentV.backgroundColor = color;
     
     
-    ImageTitleButton *imageTitleBTN;
+    UIEdgeInsets inset;
+    
+    if ([selfWeak.phDataSetDelegate respondsToSelector:@selector(viewForEdgeInSet:emptyDataType:)]) {
+        inset = [selfWeak.phDataSetDelegate viewForEdgeInSet:selfWeak emptyDataType:type];
+    }
+    else
+    {
+        inset = [self viewForEdgeInSet:self emptyDataType:type];
+    }
+    
+    contentV.frame = CGRectMake(inset.left, inset.top, rect.size.width - inset.left - inset.right,  rect.size.height-inset.top - inset.bottom);
+    
+    PH_ImageTitleButton *imageTitleBTN;
     if ([selfWeak.phDataSetDelegate respondsToSelector:@selector(viewForEmptyDataSet:emptyDataType:)]) {
         imageTitleBTN = [selfWeak.phDataSetDelegate viewForEmptyDataSet:selfWeak emptyDataType:type];
         if (!imageTitleBTN) {imageTitleBTN = [self viewForEmptyDataSet:self emptyDataType:type];}
@@ -201,7 +217,7 @@ const void *DelegateStringKey = "phDataSetDelegateKey";
 
     
     imageTitleBTN.center = CGPointMake(rect.size.width / 2 + offset_h, rect.size.height / 2 + offset);
-    [imageTitleBTN setClickAction:^(id<MenuAbleItem> menu) {
+    [imageTitleBTN setClickAction:^(id<PH_MenuAbleItem> menu) {
         if ([selfWeak.phDataSetDelegate respondsToSelector:@selector(didTapEmptyDataView:emptyDataType:)]) {
             if ([selfWeak.phDataSetDelegate didTapEmptyDataView:selfWeak emptyDataType:type]) {
                 [contentV removeFromSuperview];

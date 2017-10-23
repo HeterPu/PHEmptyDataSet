@@ -13,8 +13,8 @@
 		DB2013AF1E827F80000DC195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2013AD1E827F80000DC195 /* Main.storyboard */; };
 		DB2013B11E827F80000DC195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB2013B01E827F80000DC195 /* Assets.xcassets */; };
 		DB2013B41E827F80000DC195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2013B21E827F80000DC195 /* LaunchScreen.storyboard */; };
-		DB2013C01E827FE5000DC195 /* UIView+PHEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2013BF1E827FE5000DC195 /* UIView+PHEmptyDataSet.m */; };
-		DB2013CB1E828063000DC195 /* ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2013CA1E828063000DC195 /* ImageTitleButton.m */; };
+		DBEE2FF51F9DC3450095B32A /* UIView+PHEmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE2FF11F9DC1800095B32A /* UIView+PHEmptyDataSet.m */; };
+		DBEE2FF61F9DC3480095B32A /* PH_ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE2FF01F9DC1800095B32A /* PH_ImageTitleButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +28,12 @@
 		DB2013B01E827F80000DC195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB2013B31E827F80000DC195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB2013B51E827F80000DC195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB2013BC1E827FE5000DC195 /* PHEmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHEmptyDataSet.h; sourceTree = "<group>"; };
-		DB2013BD1E827FE5000DC195 /* PHEmptySet_Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHEmptySet_Constant.h; sourceTree = "<group>"; };
-		DB2013BE1E827FE5000DC195 /* UIView+PHEmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PHEmptyDataSet.h"; sourceTree = "<group>"; };
-		DB2013BF1E827FE5000DC195 /* UIView+PHEmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PHEmptyDataSet.m"; sourceTree = "<group>"; };
-		DB2013C91E828063000DC195 /* ImageTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTitleButton.h; sourceTree = "<group>"; };
-		DB2013CA1E828063000DC195 /* ImageTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTitleButton.m; sourceTree = "<group>"; };
+		DBEE2FEF1F9DC17F0095B32A /* UIView+PHEmptyDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+PHEmptyDataSet.h"; sourceTree = "<group>"; };
+		DBEE2FF01F9DC1800095B32A /* PH_ImageTitleButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PH_ImageTitleButton.m; sourceTree = "<group>"; };
+		DBEE2FF11F9DC1800095B32A /* UIView+PHEmptyDataSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+PHEmptyDataSet.m"; sourceTree = "<group>"; };
+		DBEE2FF21F9DC1800095B32A /* PH_ImageTitleButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PH_ImageTitleButton.h; sourceTree = "<group>"; };
+		DBEE2FF31F9DC1800095B32A /* PHEmptyDataSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHEmptyDataSet.h; sourceTree = "<group>"; };
+		DBEE2FF41F9DC1800095B32A /* PHEmptySet_Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHEmptySet_Constant.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,6 @@
 		DB2013A31E827F80000DC195 /* PHEmptyDataSet */ = {
 			isa = PBXGroup;
 			children = (
-				DB2013C81E828063000DC195 /* ImageTitleButton */,
 				DB2013BB1E827FE5000DC195 /* PHEmptyDataSet */,
 				DB2013A71E827F80000DC195 /* AppDelegate.h */,
 				DB2013A81E827F80000DC195 /* AppDelegate.m */,
@@ -92,21 +91,14 @@
 		DB2013BB1E827FE5000DC195 /* PHEmptyDataSet */ = {
 			isa = PBXGroup;
 			children = (
-				DB2013BC1E827FE5000DC195 /* PHEmptyDataSet.h */,
-				DB2013BD1E827FE5000DC195 /* PHEmptySet_Constant.h */,
-				DB2013BE1E827FE5000DC195 /* UIView+PHEmptyDataSet.h */,
-				DB2013BF1E827FE5000DC195 /* UIView+PHEmptyDataSet.m */,
+				DBEE2FF21F9DC1800095B32A /* PH_ImageTitleButton.h */,
+				DBEE2FF01F9DC1800095B32A /* PH_ImageTitleButton.m */,
+				DBEE2FF31F9DC1800095B32A /* PHEmptyDataSet.h */,
+				DBEE2FF41F9DC1800095B32A /* PHEmptySet_Constant.h */,
+				DBEE2FEF1F9DC17F0095B32A /* UIView+PHEmptyDataSet.h */,
+				DBEE2FF11F9DC1800095B32A /* UIView+PHEmptyDataSet.m */,
 			);
 			path = PHEmptyDataSet;
-			sourceTree = "<group>";
-		};
-		DB2013C81E828063000DC195 /* ImageTitleButton */ = {
-			isa = PBXGroup;
-			children = (
-				DB2013C91E828063000DC195 /* ImageTitleButton.h */,
-				DB2013CA1E828063000DC195 /* ImageTitleButton.m */,
-			);
-			path = ImageTitleButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +132,7 @@
 				TargetAttributes = {
 					DB2013A01E827F80000DC195 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = G7LDTLLV6N;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -181,10 +174,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB2013AC1E827F80000DC195 /* ViewController.m in Sources */,
-				DB2013CB1E828063000DC195 /* ImageTitleButton.m in Sources */,
+				DBEE2FF61F9DC3480095B32A /* PH_ImageTitleButton.m in Sources */,
 				DB2013A91E827F80000DC195 /* AppDelegate.m in Sources */,
+				DBEE2FF51F9DC3450095B32A /* UIView+PHEmptyDataSet.m in Sources */,
 				DB2013A61E827F80000DC195 /* main.m in Sources */,
-				DB2013C01E827FE5000DC195 /* UIView+PHEmptyDataSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +297,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7LDTLLV6N;
 				INFOPLIST_FILE = PHEmptyDataSet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hshs.PHEmptyDataSet;
@@ -315,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7LDTLLV6N;
 				INFOPLIST_FILE = PHEmptyDataSet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hshs.PHEmptyDataSet;
@@ -341,6 +336,7 @@
 				DB2013BA1E827F80000DC195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

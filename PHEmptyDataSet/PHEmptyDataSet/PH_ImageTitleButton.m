@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Alexi. All rights reserved.
 //
 
-#import "ImageTitleButton.h"
+#import "PH_ImageTitleButton.h"
 
 
-@implementation MenuItem
+@implementation PH_MenuItem
 
-- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon action:(MenuAction)action
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon action:(PH_MenuAction)action
 {
     if (self = [super init]) {
         self.title = title;
@@ -34,26 +34,27 @@
 
 
 
-@interface MenuButton ()
+@interface PH_MenuButton ()
 
-@property (nonatomic, copy) MenuAction action;
+@property (nonatomic, copy) PH_MenuAction action;
+@property (nonatomic, copy) PH_MenuHighlightedAction highlightedAction;
 
 @end
 
 
-@implementation MenuButton
+@implementation PH_MenuButton
 
-- (instancetype)initWithMenu:(MenuItem *)item
+- (instancetype)initWithMenu:(PH_MenuItem *)item
 {
     return [self initWithTitle:item.title icon:item.icon action:item.action];
 }
 
-- (instancetype)initWithTitle:(NSString *)title action:(MenuAction)action
+- (instancetype)initWithTitle:(NSString *)title action:(PH_MenuAction)action
 {
     return [self initWithTitle:title icon:nil action:action];
 }
 
-- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon action:(MenuAction)action
+- (instancetype)initWithTitle:(NSString *)title icon:(UIImage *)icon action:(PH_MenuAction)action
 {
     if (self = [super init])
     {
@@ -62,14 +63,13 @@
         self.action = action;
         [self setTitle:title forState:UIControlStateNormal];
         //        self.titleLabel.font = [UIFont systemFontOfSize:16];
-        
         [self setImage:icon forState:UIControlStateNormal];
         [self addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
 
-- (instancetype)initWithBackground:(UIImage *)icon action:(MenuAction)action
+- (instancetype)initWithBackground:(UIImage *)icon action:(PH_MenuAction)action
 {
     if (self = [super init])
     {
@@ -82,7 +82,7 @@
 }
 
 
-- (void)setClickAction:(MenuAction)action
+- (void)setClickAction:(PH_MenuAction)action
 {
     self.action = action;
     [self addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,29 +95,49 @@
     }
     
 }
+
+
+-(void)setHighlightedPressAction:(PH_MenuHighlightedAction)action {
+    self.highlightedAction = action;
+}
+
+
+-(void)setHighlighted:(BOOL)highlighted{
+    [super setHighlighted:highlighted];
+    if (self.highlightedAction) {
+        self.highlightedAction(self, highlighted);
+    }
+}
+
+
+
 @end
 
 
 
+@interface PH_ImageTitleButton()
 
-@implementation ImageTitleButton
+@property(nonatomic,assign) BOOL isDisableHighted;
+
+@end
+@implementation PH_ImageTitleButton
 
 - (instancetype)init
 {
-    return [self initWithStyle:EImageLeftTitleRight];
+    return [self initWithStyle:PH_EImageLeftTitleRight];
 }
 
-- (instancetype)initWithStyle:(ImageTitleButtonStyle)style
+- (instancetype)initWithStyle:(PH_ImageTitleButtonStyle)style
 {
     return [self initWithStyle:style maggin:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
-- (instancetype)initWithStyle:(ImageTitleButtonStyle)style maggin:(UIEdgeInsets)margin
+- (instancetype)initWithStyle:(PH_ImageTitleButtonStyle)style maggin:(UIEdgeInsets)margin
 {
     return [self initWithStyle:style maggin:margin padding:CGSizeMake(2, 2)];
 }
 
-- (instancetype)initWithStyle:(ImageTitleButtonStyle)style maggin:(UIEdgeInsets)margin padding:(CGSize)padding
+- (instancetype)initWithStyle:(PH_ImageTitleButtonStyle)style maggin:(UIEdgeInsets)margin padding:(CGSize)padding
 {
     if (self = [super initWithFrame:CGRectZero])
     {
@@ -135,6 +155,23 @@
     {
         _imageSize = image.size;
     }
+}
+
+
+-(void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    if (enabled) {
+        self.titleLabel.alpha = 1.0;
+    }
+    else
+    {
+        self.titleLabel.alpha = 0.5;
+    }
+}
+
+
+-(void)setDisableHighted:(BOOL)isDisabled {
+    _isDisableHighted = isDisabled;
 }
 
 
@@ -175,7 +212,7 @@
     
     switch (_style)
     {
-        case EImageTopTitleBottom:
+        case PH_EImageTopTitleBottom:
         {
             CGRect imgRect = rect;
             imgRect.size.height = size.height;
@@ -189,7 +226,7 @@
             self.titleLabel.frame = titleRect;
         }
             break;
-        case ETitleTopImageBottom:
+        case PH_ETitleTopImageBottom:
         {
             CGRect imgRect = rect;
             imgRect.origin.x += (imgRect.size.width - size.width)/2;
@@ -203,7 +240,7 @@
             self.titleLabel.frame = titleRect;
         }
             break;
-        case EImageLeftTitleRight:
+        case PH_EImageLeftTitleRight:
         {
             CGRect imgRect = rect;
             imgRect.size.width = size.width;
@@ -217,7 +254,7 @@
             self.titleLabel.frame = titleRect;
         }
             break;
-        case ETitleLeftImageRight:
+        case PH_ETitleLeftImageRight:
         {
             CGRect imgRect = rect;
             imgRect.size.width = size.width;
@@ -231,7 +268,7 @@
             self.titleLabel.frame = titleRect;
         }
             break;
-        case EImageLeftTitleRightLeft:
+        case PH_EImageLeftTitleRightLeft:
         {
             CGRect imgRect = rect;
             imgRect.size = self.imageSize;
@@ -245,7 +282,7 @@
         }
             break;
             
-        case ETitleLeftImageRightLeft:
+        case PH_ETitleLeftImageRightLeft:
         {
             CGRect imgRect = rect;
             imgRect.size = self.imageSize;
@@ -259,7 +296,7 @@
         }
             break;
             
-        case EImageLeftTitleRightCenter:
+        case PH_EImageLeftTitleRightCenter:
         {
             
             CGSize titleSize = [self.titleLabel textSizeIn:rect.size];
@@ -281,7 +318,7 @@
         }
             break;
             
-        case ETitleLeftImageRightCenter:
+        case PH_ETitleLeftImageRightCenter:
         {
             CGSize titleSize = [self.titleLabel textSizeIn:rect.size];
             
@@ -299,7 +336,7 @@
             self.imageView.frame = middleRect;
         }
             break;
-        case EFitTitleLeftImageRight:
+        case PH_EFitTitleLeftImageRight:
         {
             CGSize titleSize = [self.titleLabel textSizeIn:rect.size];
             CGRect titleRect = rect;
@@ -322,6 +359,19 @@
     }
 }
 
+
+/**
+ 当选中时取消高亮效果
+
+ @param highlighted 是否高亮
+ */
+-(void)setHighlighted:(BOOL)highlighted {
+    if (!_isDisableHighted) {
+        [super setHighlighted:highlighted];
+    }
+}
+
+
 - (void)layoutSubviews
 {
     if (CGRectEqualToRect(self.bounds, CGRectZero))
@@ -339,7 +389,7 @@
 //    }
 }
 
-- (void)setTintColor:(UIColor *)color
+- (void)setMyTintColor:(UIColor *)color
 {
     if (color)
     {
@@ -349,6 +399,8 @@
         [self setTitleColor:color forState:UIControlStateNormal];
     }
 }
+
+
 
 @end
 
@@ -397,7 +449,7 @@
 
 
 
-@implementation UILabel (ImageTitleCommon)
+@implementation UILabel (PH_ImageTitleCommon)
 
 + (instancetype)label
 {
@@ -460,7 +512,7 @@
 @end
 
 
-@implementation InsetLabel
+@implementation PH_InsetLabel
 
 
 - (void)drawTextInRect:(CGRect)rect

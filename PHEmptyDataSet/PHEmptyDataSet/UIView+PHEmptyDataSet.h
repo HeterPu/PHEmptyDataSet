@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "PHEmptySet_Constant.h"
-#import "ImageTitleButton.h"
+#import "PH_ImageTitleButton.h"
 
 
 /**
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, PHEmptyNoDataType){
 
 @protocol PHEmptyDataSetDelegate <NSObject>
 
-@required
+@optional
 
 /**
  点击无数据&无网络图片时触发的事件
@@ -38,7 +38,19 @@ typedef NS_ENUM(NSInteger, PHEmptyNoDataType){
 -(BOOL)didTapEmptyDataView:(UIView *)view
              emptyDataType:(PHEmptyNoDataType) type;
 
+
 @optional
+
+/**
+ 获取jiange
+ 
+ @param view 传入的view
+ @param type 传入类型
+ @return 返回视图
+ */
+-(UIEdgeInsets)viewForEdgeInSet:(UIView *)view
+                           emptyDataType:(PHEmptyNoDataType) type;
+
 
 /**
  获取自定义点击视图
@@ -47,7 +59,7 @@ typedef NS_ENUM(NSInteger, PHEmptyNoDataType){
  @param type 传入类型
  @return 返回视图
  */
--(ImageTitleButton *)viewForEmptyDataSet:(UIView *)view
+-(PH_ImageTitleButton *)viewForEmptyDataSet:(UIView *)view
                            emptyDataType:(PHEmptyNoDataType) type;
 
 
